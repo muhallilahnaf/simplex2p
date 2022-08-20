@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+  <link rel="manifest" href="icon/site.webmanifest">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./index.css">
+  <title>simplex2p</title>
+</head>
+
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <img src="./logo.svg" width="150" height="40">
+      </a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarBasic" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-background-grey-lighter" href="./index.html">
+          Home
+        </a>
+        <a class="navbar-item" href="https://github.com/muhallilahnaf/simplex2p">
+          GitHub Repo
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="section">
+    <div class="container">
+      <div class="block">
+        <p class="title">Two-phase simplex calculator</p>
+        <p class="subtitle">with detailed steps!</p>
+      </div>
+      <div class="block columns">
+        <div class="column is-three-fifths-desktop">
+          <div class="block">
+            <textarea id="problem" class="textarea is-focused is-info" rows="10"></textarea>
+          </div>
+          <div class="level is-mobile">
+            <div class="level-item">
+              <button id="solve" class="button is-dark">Calculate</button>
+            </div>
+            <div class="level-item">
+              <button id="reset" class="button is-small" disabled>Reset</button>
+            </div>
+            <div class="level-item">
+              <button id="history" class="button is-small js-modal-trigger" data-target="history-modal">History</button>
+            </div>
+          </div>
+          <div class="block" id="empty-msg"></div>
+        </div>
+        <div class="card column">
+          <header class="card-header">
+            <p class="card-header-title has-background-grey-lighter">
+              Enter the linear program in the input box
+            </p>
+          </header>
+          <div class="card-content is-size-7">
+            <div class="content">
+              <div class="level is-mobile">
+                <div class="level-left">
+                  <div class="level-item"><b>Use the following syntax:</b></div>
+                </div>
+                <div class="level-right">
+                  <div class="level-item">
+                    <button class="button is-light is-small">
+                      <label class="checkbox"><input type="checkbox" id="toggle-guide"> show details</label>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div id="guide">
+                <p><b>First part: {min/max} = {objective function}</b></p>
+                <div class="level is-mobile">
+                  <div class="level-item">Example:</div>
+                  <div class="level-item"><textarea name="eg1" rows="1" readonly
+                      class="has-background-light">max = 3x1 + 2x2</textarea></div>
+                </div>
+                <ul class="details hide">
+                  <li>Specify minimization or maximization using "min" or "max"</li>
+                  <li>Write the objective function expression</li>
+                  <li>Keep both of them in a single line, and separate min/max and the expression by "=" sign</li>
+                </ul>
+                <p><b>Second part: constraints</b></p>
+                <div class="level is-mobile">
+                  <div class="level-item">Example:</div>
+                  <div class="level-item"><textarea name="eg2" rows="3" readonly
+                      class="has-background-light"></textarea></div>
+                </div>
+                <ul class="details hide">
+                  <li>Write each constraint in a separate line</li>
+                  <li>No need to write non-negativity constraints</li>
+                  <li>No need to write "subject to" or similar phrases</li>
+                  <li><b>Avoid using the following variable names: <i>slck, srpls, artfcl</i> as they are used in
+                      algorithm for slack, surplus and artificial variables respectively</b></li>
+                </ul>
+                <p class="has-text-weight-bold">The input text box contains an example already</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div id="output"></div>
+    </div>
+  </div>
+  <div class="modal is-size-6" id="history-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Input history</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <p>No history, start using to save history.</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button">Cancel</button>
+      </footer>
+    </div>
+  </div>
+  <script src="./calculate.js"></script>
+  <script src="./dom.js"></script>
+</body>
+
+</html>

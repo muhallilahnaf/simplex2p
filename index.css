@@ -1,0 +1,33 @@
+#output table {
+    font-size: smaller;
+}
+
+#output .overflow-scroll {
+    overflow-x: auto;
+}
+
+#output .card {
+    margin-top: 40px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* for dark mode (later) */
+/* button:hover,
+.checkbox:hover {
+    color: white;
+} */
+
+textarea[name="eg2"],
+textarea[name="eg1"] {
+    border-width: 0;
+    padding: 5px;
+    padding-left: 10px;
+    border-radius: 2px;
+}
+
+.hide {
+    display: none;
+}
